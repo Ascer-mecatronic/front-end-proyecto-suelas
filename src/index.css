@@ -1,0 +1,122 @@
+:root {
+    --primary-color: black;
+    --texto: rgba(255,255,255,.7);
+    --blanco:#fff;
+    --input:#3A3B3C;
+    --input-hover:#4b4d4e;
+    --activo:#2D88FF;
+    --gris-claro:#B0B3B8;
+    
+}
+
+*{
+    box-sizing: border-box;
+    font-family: sans-serif;
+    color: black;
+}
+
+body{
+    background-color: aliceblue;
+}
+
+.nav-fondo {
+    background-color: var(--input);
+}
+
+.nav-titulo{
+    font-size: 2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.card-estilos{
+    border: none;
+    background-color: aliceblue;
+}
+
+.select-busqueda{
+    border-width: 0px 0px 1px 0px;
+    background-color: aliceblue;
+}
+
+.radio-tile-group{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.input-container{
+    position: relative;
+    height: 3rem;
+    width: 4rem;
+    margin: 0.5rem;
+}
+
+.input-container input{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+}
+
+.input-container .radio-tile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    transition: all 300ms ease;
+}
+
+.input-container label{
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+input:checked + .radio-tile{
+    background-color: var(--primary-color);
+    box-shadow: 0 0 12 var(--primary-color);
+}
+
+input:hover + .radio-tile{
+    box-shadow: 0 0 12 var(--primary-color);
+}
+
+input:checked + .radio-tile label{
+    color: aliceblue;
+}
+
+/*Menu principal*/
+header .menu a {
+    display: inline-block;
+    padding: 0px 10px;
+    border: none;
+}
+
+header .menu a:hover {
+   color: var(--texto);
+    background: var(--input);
+    border-radius: 5px;
+}
+
+header .menu .active {
+    border-bottom: 4px solid var(--activo);
+    color: var(--activo);
+}
+
+header .menu .active:hover{
+    background: none;
+    border-radius: 0px;
+    color: var(--activo);
+}
+
+.btn-logout{
+    border: none;
+}
