@@ -108,3 +108,21 @@ try {
     }
     return null;
 }
+
+const firtsSixValues = (elements) => {
+    elements.sort(function(a,b){return b - a});
+    
+    return elements.slice(0,6);
+}
+
+export const findMostRecents = (products) =>{
+    let findProds = new Array();
+    const productsId = products.map( p => p.id);
+    firtsSixValues(productsId).forEach(p => {
+        const findProd = products.find(prod => prod.id === p);
+        if(findProd){
+            findProds.push(findProd);
+        }
+    });
+    return findProds;
+}

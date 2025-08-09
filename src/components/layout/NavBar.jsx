@@ -10,7 +10,7 @@ export const NavBar = () => {
     return (
         <>
         <header className="">
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark m-3 p-3 ">
+        <nav className="navbar navbar-expand-lg navbar-white m-3 p-3 ">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#"><h3 className="nav-titulo">SuelasApp 4.3</h3></a>
 
@@ -52,8 +52,8 @@ export const NavBar = () => {
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNavLogout">
                     {(login.isAdmin || login.isAuth) ? <p className="text-success mx-4 my-2">{login?.user.username}</p>
                     :<button
-                        className="btn btn-outline-success">
-                        <Link className="nav-link" to={'/login'}> login </Link>
+                        className="btn btn-outline-success" style={{border: 'none'}}>
+                        <Link className="nav-link text-success" to={'/login'}> login </Link>
                     </button>}
                     {!login.isAuth || 
                     <button

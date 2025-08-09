@@ -16,7 +16,13 @@
 }
 
 body{
-    background-color: aliceblue;
+    background-color: #efefef;
+}
+
+.navbar{
+    
+    color: #3A3B3C;
+    
 }
 
 .nav-fondo {
@@ -119,4 +125,129 @@ header .menu .active:hover{
 
 .btn-logout{
     border: none;
+}
+
+.seccion-one{
+    min-height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-container{
+    max-width: 1120px;
+    width: 100%;
+    background-color: #efefef;
+    padding: 40px 0;
+}
+
+.slide-content{
+    margin: 0 40px;
+}
+
+.card{
+    width: 320px;
+    border-radius: 25px;
+    background-color: #efefef;
+    border: none;
+}
+
+.image-content,
+.card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px;
+}
+
+.image-content{
+    position: relative;
+    row-gap: 5px;
+    padding: 25px;
+}
+
+.overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #4070f4;
+    border-radius: 25px 25px 0 25px;
+}
+.overlay::before,
+.overlay::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+    height: 40px;
+    width: 40px;
+    background-color: #4070f4;
+}
+.overlay::after{
+    border-radius: 0 25px 0 0;
+    background-color:#fff;
+}
+
+.card-image{
+    position: relative;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background: aliceblue;
+    padding: 3px;
+}
+
+.card-image .card-img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0%;
+   
+}
+
+.name{
+    font-size: 18px;
+    font-weight: 500;
+    color:#3A3B3C;
+}
+
+.description{
+    font-size: 14px;
+    color: #4b4d4e;
+    text-align: center;
+}
+
+.buttonview{
+    border: none;
+    font-size: 16px;
+    color: #fff;
+    padding: 8px 16px;
+    background-color: #4070f4;
+    border-radius: 6px;
+    margin: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.buttonview:hover{
+    background: #265DF2;
+}
+
+.slick-slide > div {
+    margin: 0 10px;
+
+}
+
+.slick-prev{
+    left: -10%;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 96px;
+    line-height: 1;
+    opacity: .75;
+    color: #4b4d4e;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }

@@ -58,6 +58,7 @@ export const ProductsPage = () => {
                                             tipo={prod.tipo}
                                             tamanio={prod.tamanio}
                                             color={prod.color}
+                                            porciento={prod.porciento}
                                         />
                                     </div>
                                 )

@@ -21,6 +21,7 @@ const initialProductsForm = {
         }
     ],
     rebaja: '',
+    porciento:'',
     disponible: '',
     images: [
         {
@@ -73,7 +74,7 @@ const initialError = {
     tipo: '',
     tamanio: '',
     color: '',
-
+    porciento:'',
 };
 
 const initialErrorCatalogMessage = '';

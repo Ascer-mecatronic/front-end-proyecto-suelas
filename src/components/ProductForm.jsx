@@ -388,6 +388,21 @@ export const ProductForm = ({ productSelected }) => {
                 <label htmlFor='rebaja' className='form-check-label'>Rebaja</label>
               </div>
 
+              <div className='form-floating'>
+                <input
+                  className="form-control w-75"
+                  placeholder="porciento"
+                  type="number"
+                  name="porciento"
+                  defaultValue={0}
+                  id='floatingPorciento'
+                  onChange={onInputChange}
+                />
+                <label htmlFor='floatingPorciento'>Porciento... </label>
+              </div>
+              <p className="text-danger">{errors?.porciento}</p>
+              <br />
+
 
               <div className='form-check my-4 py-2'>
                 <input
@@ -462,8 +477,8 @@ export const ProductForm = ({ productSelected }) => {
         </div>
       </section>
 
-      {prodForm.id !== 0 ?
-
+      {prodForm.id !== 0 ? 
+      
         <aside className='col-4 mx-3 px-3'>
           <div className="card">
             <div className="card-body">
@@ -481,7 +496,7 @@ export const ProductForm = ({ productSelected }) => {
                 <li>{productSelected ? 'Nombre: ' + prodForm.name : ''}</li>
                 <li>{productSelected ? 'Precio: $' + prodForm.precio : ''}</li>
                 
-                <li>{productSelected ? 'En rebaja: ' + prodForm.rebaja : ''}</li>
+                <li>{productSelected ? 'En rebaja: ' + prodForm.rebaja + ' ' + prodForm.porciento+'%' : '' }</li>
                 <li>{productSelected ? 'Disponible: ' + prodForm.disponible : ''}</li>
                 {productSelected ? <><li> Tallas:
 

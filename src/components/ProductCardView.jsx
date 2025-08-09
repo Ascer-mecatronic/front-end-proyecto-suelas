@@ -6,7 +6,7 @@ import { AuthContext } from "../auth/context/AuthContext";
 
 const initiCont = 0;
 
-export const ProductCardView = ({ id, name, precio, cantidad, images, tallas, tipo, tamanio, color }) => {
+export const ProductCardView = ({ id, name, precio, cantidad, images, tallas, tipo, tamanio, color, porciento }) => {
 
     const {
         handlerProductSelected,
@@ -59,7 +59,7 @@ export const ProductCardView = ({ id, name, precio, cantidad, images, tallas, ti
                     >Eliminar</button> </>}
 
                     <button
-                        onClick={()=>handlerProductSelected({id, name, precio, cantidad, images, tallas, tipo, tamanio, color})}
+                        onClick={()=>handlerProductSelected({id, name, precio, cantidad, images, tallas, tipo, tamanio, color, porciento})}
                         className="btn btn-sm btn-secondary m-2"
                     >Detalles</button>
                 </div>

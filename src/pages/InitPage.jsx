@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { MediaContext } from "../context/MediaContext";
 import { InitPageContent } from '../components/InitPageContent';
+import { ProductContext } from '../context/ProductContext';
 
 const initContentFiles =
 {
@@ -30,9 +31,13 @@ export const InitPage = () => {
 
     const { pages, getPages } = useContext(MediaContext);
 
+    const { products, getProducts } = useContext(ProductContext);
+
     useEffect(() => {
         getPages();
+        getProducts();
     }, [])
+    
 
     return (
         <>
@@ -54,6 +59,7 @@ export const InitPage = () => {
                                             textTwo={page.textTwo}
                                             collectionOne={page.collectionOne}
                                             collectionTwo={page.collectionTwo}
+                                            products={products}
                                         />
                                     </div>
                                 )
