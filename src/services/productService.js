@@ -110,8 +110,7 @@ try {
 }
 
 const firtsSixValues = (elements) => {
-    elements.sort(function(a,b){return b - a});
-    
+    elements.sort(function(a,b){return b - a}); 
     return elements.slice(0,6);
 }
 

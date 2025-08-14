@@ -30,6 +30,9 @@ export const ProductCatalogForm = () => {
 
   useEffect(() => {
     getListSelectsForm();
+    return () => {
+      setDetailsFind(initialSet);
+    }
   }, [])
 
   const clearCatalog = () => {
@@ -43,6 +46,7 @@ export const ProductCatalogForm = () => {
       ...detailsFind,
       [target.name]: target.value,
     });
+    console.log(detailsFind);
   }
 
   const onSubmit = (event) => {

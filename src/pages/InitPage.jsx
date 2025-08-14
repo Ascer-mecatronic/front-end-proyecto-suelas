@@ -31,11 +31,12 @@ export const InitPage = () => {
 
     const { pages, getPages } = useContext(MediaContext);
 
-    const { products, getProducts } = useContext(ProductContext);
+    const { products, getProducts, getListSelectsForm, formlist } = useContext(ProductContext);
 
     useEffect(() => {
         getPages();
         getProducts();
+        getListSelectsForm();
     }, [])
     
 
@@ -60,6 +61,7 @@ export const InitPage = () => {
                                             collectionOne={page.collectionOne}
                                             collectionTwo={page.collectionTwo}
                                             products={products}
+                                            formlist={formlist}
                                         />
                                     </div>
                                 )

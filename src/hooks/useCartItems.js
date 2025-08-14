@@ -9,7 +9,7 @@ const initialCartItem = JSON.parse(sessionStorage.getItem('cart')) || [];
 
 export const useCartItems = () => {
 
-    const [items, dispatch] = useReducer(cartItemReducer, initialCartItem);
+    const [items, dispatch] = useReducer(cartItemReducer, JSON.parse(sessionStorage.getItem('cart')) || []);
 
     const[total, setTotal] = useState(0);
 

@@ -17,7 +17,7 @@ const initialCantidad = {
 
 const initPicturePosition = 0;
 
-export const ViewModel = (productSelected) => {
+export const ViewModel = ({productSelected}) => {
 
     const {handleAddItemsCart} = useContext(CartContext);
 

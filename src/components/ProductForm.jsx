@@ -34,7 +34,7 @@ export const ProductForm = ({ productSelected }) => {
     
     console.log(formlist.tallas.length);
     
-  }, [productSelected], []);  //***AQUI */
+  }, [productSelected]);  //***AQUI */
 
   const onInputChange = ({ target }) => {
 

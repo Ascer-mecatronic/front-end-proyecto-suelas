@@ -6,44 +6,32 @@ import { ViewModel } from '../components/ViewModel';
 
 export const ProductViewModel = () => {
 
-    const { products, getProducts } = useContext(ProductContext);
+    const { products, getProducts, initialProductsForm } = useContext(ProductContext);
+
+    const [ productSelected, setProductSelected] = useState(initialProductsForm);
 
     const { id } = useParams();
 
     useEffect(() => {
+        if (id) {
+            const product = products.find(p => p.id === parseInt(id)) || initialProductsForm;
+            setProductSelected(product);
+        }
         getProducts();
     }, []);
-
 
     return (
         <div className='container-fluid'>
 
             <main className='row'>
 
-                {products.map(prod => {
-                    if (prod.id == id) {
-                        return (
-                            <div key={prod.id}>
-                                <ViewModel
-                                    id={prod.id}
-                                    name={prod.name}
-                                    precio={prod.precio}
-                                    cantidad={prod.cantidad}
-                                    images={prod.images}
-                                    tallas={prod.tallas}
-                                    tipo={prod.tipo}
-                                    tamanio={prod.tamanio}
-                                    color={prod.color}
-                                />
-                            </div>
-                        )
-                    }
-                    else{
-                        return(<div key={prod.id}>
-                        <h2>Articulo no encontrado</h2>
-                        </div>)
-                    }
-                })}
+                {productSelected.id !== 0 ?  
+
+                <ViewModel productSelected = {productSelected}/>
+
+                : 
+                 <h2>Articulo no encontrado</h2>
+            }
 
             </main>
 
