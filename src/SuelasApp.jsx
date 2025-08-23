@@ -19,6 +19,7 @@ import { InitPage } from "./pages/InitPage"
 import { AdminPage } from "./pages/AdminPage"
 import { PagesRegisterPage } from "./pages/PagesRegisterPage"
 import { NavBarMenu } from "./components/layout/NavBarMenu"
+import { CatalogView } from "./components/CatalogView"
 
 export const SuelasApp = () => {
 
@@ -40,8 +41,6 @@ export const SuelasApp = () => {
                 <Route path="account/register" element={<AcountRegisterPage/>}/>
 
                 <Route path="products" element={<ProductsPage/>}/>
-
-                <Route path="products/catalog" element={<ProductCatalogView/>}/>
 
                 <Route path="navbar" element={<NavBarMenu/>}/>
 

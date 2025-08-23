@@ -309,20 +309,30 @@ header .menu .active:hover {
 }
 
 .box-collections {
+    position: relative;
     border: 10px solid #fff;
-    width: 350px;
-    height: 350px;
-    margin: 20px;
-    background-size: contain;
-    background-position: center;
-
-
+    width: 25%;
+    margin: auto;
+    
 }
 
 .box-collections>img {
-    width: 330px;
-    height: 330px;
+    width:100%;
+}
 
+div.name-collection{
+    position: absolute;
+    bottom: 15%;
+    width: 100%;
+    text-align: center;
+}
+
+h2.tipo-name{
+    background: #3A3B3C;
+    color: #efefef;
+    font-size: 50px;
+    font-weight: 200;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .rebajas-content {

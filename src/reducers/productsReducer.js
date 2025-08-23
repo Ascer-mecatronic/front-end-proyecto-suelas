@@ -10,6 +10,9 @@ export const productsReducer = (state = [], action) => {
         case 'loadProdsByDetails':
             return action.payload;
 
+        case 'findProdRebajas':
+            return action.payload;
+
         case 'addProduct':
             return [
                 ...state,

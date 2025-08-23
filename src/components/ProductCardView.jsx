@@ -6,7 +6,7 @@ import { AuthContext } from "../auth/context/AuthContext";
 
 const initiCont = 0;
 
-export const ProductCardView = ({ id, name, precio, cantidad, images, tallas, tipo, tamanio, color, porciento }) => {
+export const ProductCardView = ({id, name, precio, cantidad, images, tallas, tipo, tamanio, color, porciento }) => {
 
     const {
         handlerProductSelected,
@@ -17,6 +17,8 @@ export const ProductCardView = ({ id, name, precio, cantidad, images, tallas, ti
     const {login} = useContext(AuthContext);
 
     const[contImg, setContImg] = useState(initiCont);
+
+    
 
     const onMouseUpImg = () =>{
         setContImg(1);

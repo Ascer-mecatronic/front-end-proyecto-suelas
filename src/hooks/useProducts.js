@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useReducer } from "react";
-import { findAll, findByDetails, findListsForm, optimizeGarbageFiles, remove, save, update } from "../services/productService";
+import { findAll, findByDetails, findListsForm, findRebajas, optimizeGarbageFiles, remove, save, update } from "../services/productService";
 import { productsReducer } from "../reducers/productsReducer";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -21,7 +21,7 @@ const initialProductsForm = {
         }
     ],
     rebaja: '',
-    porciento:'',
+    porciento: '',
     disponible: '',
     images: [
         {
@@ -74,7 +74,7 @@ const initialError = {
     tipo: '',
     tamanio: '',
     color: '',
-    porciento:'',
+    porciento: '',
 };
 
 const initialErrorCatalogMessage = '';
@@ -177,10 +177,10 @@ export const useProducts = () => {
                     if (error.response?.status == 401) {
                         clearSessionExpired();
                         Swal.fire("El tiempo de sesion a finalizado");
-                    }else if(error.response?.status == 404){
+                    } else if (error.response?.status == 404) {
                         console.log("elemento eliminado exitosamente");
                         navigate('/products');
-                    }else{
+                    } else {
                         throw error;
                     }
                 }
@@ -195,6 +195,38 @@ export const useProducts = () => {
             console.log(result.data);
             dispatch({
                 type: 'loadProdsByDetails',
+                payload: result.data,
+            });
+            navigate('/products/catalog');
+        } catch (error) {
+            if (error.response && error.response?.status === 404) {
+                setErrorCatalogMessage('producto no encontrado');
+                console.log(errorCatalogMessage);
+            } else {
+                console.log('NOT_FOUND')
+                throw error;
+            }
+        }
+    }
+
+    const getFindCatalogItems = (details) => {
+        if (sessionStorage.getItem('filters') != null) {
+            sessionStorage.removeItem('filters');
+        } 
+        sessionStorage.setItem('filters', JSON.stringify(details));
+        console.log(JSON.parse(sessionStorage.getItem('filters')));
+        
+         navigate('/products/catalog');
+    }
+
+
+    const getProductsRebajas = async () => {
+        //setErrorCatalogMessage(initialErrorCatalogMessage);
+        try {
+            const result = await findRebajas();
+            console.log(result.data);
+            dispatch({
+                type: 'findProdRebajas',
                 payload: result.data,
             });
             navigate('/products/catalog');
@@ -277,6 +309,8 @@ export const useProducts = () => {
         handleCloseForms,
         getProducts,
         getProdsByDetails,
+        getFindCatalogItems,
+        getProductsRebajas,
         getListSelectsForm,
         clearCatalogDetails,
         //optimizeGarbage,

@@ -24,7 +24,7 @@ const settings = {
 export const InitPageContent = ({ id, name, imageOne, imageTwo, imageThree,
     textOne, textTwo, collectionOne, collectionTwo, products, formlist }) => {
 
-    const { getProdsByDetails } = useContext(ProductContext);
+    const { getProdsByDetails,  getProductsRebajas } = useContext(ProductContext);
 
     const [recentsProd, setRecentsProd] = useState([]);
 
@@ -50,6 +50,10 @@ export const InitPageContent = ({ id, name, imageOne, imageTwo, imageThree,
         getProdsByDetails(initialSet);
         //console.log(detailsFind);
     }
+
+    const findRebajas = () =>{
+        getProductsRebajas();
+    } 
 
     return (
         <>
@@ -122,8 +126,8 @@ export const InitPageContent = ({ id, name, imageOne, imageTwo, imageThree,
                                 onClick={() => findCollection(index)}
 
                             />
-                            <div>
-                                <h2 className=''>{detailsFind[index]}</h2>
+                            <div className='name-collection'>
+                                <h2 className='tipo-name'>{detailsFind[index]}</h2>
                             </div>
                         </div>
                     ))}
@@ -133,12 +137,10 @@ export const InitPageContent = ({ id, name, imageOne, imageTwo, imageThree,
 
             <div className='row rebajas-content'>
                 <div className='col rebajas-box'>
-                    <NavLink to={'/products'}>
                         <img className="img-rebajas"
                             src={"../../imgpublicy/" + imageTwo}
-
+                            onClick={() => findRebajas()}
                         />
-                    </NavLink>
 
                 </div>
             </div>

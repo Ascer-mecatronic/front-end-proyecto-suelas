@@ -1,44 +1,45 @@
-
-
 import React, { useContext, useEffect, useState } from 'react'
 import { ProductContext } from '../context/ProductContext';
 
-
-const initialSet = {
+const detailsBlank = {
   talla: "",
   tipo: "",
   tamanio: "",
   color: "",
+  rebaja:false,
+};
+
+const initialSet = JSON.parse(sessionStorage.getItem('filters')) || {
+  talla: "",
+  tipo: "",
+  tamanio: "",
+  color: "",
+  rebaja:false,
 };
 
 const initiAlertmsg = '';
 
-export const ProductCatalogForm = () => {
+export const ProductCatalogForm = ({handler}) => {
 
-  const {
-    getProdsByDetails,
-    getListSelectsForm,
-    formlist,
-    clearCatalogDetails,
-  } = useContext(ProductContext);
+  const { getListSelectsForm, formlist, clearCatalogDetails } = useContext(ProductContext);
 
   const [detailsFind, setDetailsFind] = useState(initialSet);
 
   const[alertForm, setAlertForm] = useState(initiAlertmsg);
 
+  const [rebaja, setRebaja] = useState(false);
+
   const {talla, tipo, tamanio, color} = detailsFind;
 
   useEffect(() => {
     getListSelectsForm();
-    return () => {
-      setDetailsFind(initialSet);
-    }
   }, [])
 
   const clearCatalog = () => {
     setAlertForm(initiAlertmsg);
-    setDetailsFind(initialSet);
-    clearCatalogDetails();
+    setDetailsFind(detailsBlank);
+    sessionStorage.setItem('filters', JSON.stringify(detailsBlank));
+    handler(detailsBlank);
   }
 
   const onInputChange = ({ target }) => {
@@ -46,7 +47,19 @@ export const ProductCatalogForm = () => {
       ...detailsFind,
       [target.name]: target.value,
     });
-    console.log(detailsFind);
+    //console.log(detailsFind);
+  }
+
+  const onInputCheck = ({ target }) => {
+      if (target.checked) {
+        setRebaja(true);
+      } else {
+        setRebaja(false);
+      } 
+      setDetailsFind({
+        ...detailsFind,
+        [target.name]: rebaja,
+      });
   }
 
   const onSubmit = (event) => {
@@ -55,8 +68,7 @@ export const ProductCatalogForm = () => {
     if(color === '' && talla === '' && tamanio === '' && tipo === ''){
       setAlertForm('agregue campo de busqueda');
     }else{
-      console.log(detailsFind);
-    getProdsByDetails(detailsFind);
+      handler(detailsFind);
     }
   }
 
@@ -142,6 +154,18 @@ export const ProductCatalogForm = () => {
         </select>
             <label htmlFor='floatingColores'>Color:</label>
           </div>
+
+          <div className='form-check'>
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  name='rebaja'
+                  id='rebaja'
+                  onChange={(event) => onInputCheck(event)}
+                  value={rebaja}
+                />
+                <label htmlFor='rebaja' className='form-check-label'>Rebaja</label>
+              </div>
 
         <button
           className="btn btn-primary px-2 m-2"

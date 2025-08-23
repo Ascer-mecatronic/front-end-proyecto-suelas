@@ -6,24 +6,39 @@ import { NavLink } from 'react-router-dom';
 import { ProductCatalogForm } from './ProductCatalogForm';
 import { DetailsModal } from './DetailsModal';
 import { useCartItems } from '../hooks/useCartItems';
+import { findItemsCatalogFilter } from '../services/productService';
+//PONER AQUI EL SESSION STORAGE DE INICIO
+const initialSet = JSON.parse(sessionStorage.getItem('filters')) || {
+  talla: "",
+  tipo: "",
+  tamanio: "",
+  color: "",
+  rebaja:false,
+};
+export const ProductCatalogView = ({products}) => {
 
+    const {visibleDetails, errorCatalogMessage } = useContext(ProductContext);
 
-export const ProductCatalogView = () => {
-    
-    const {
-        products,
-        visibleDetails,
-        errorCatalogMessage,
-        
-    } = useContext(ProductContext);
+    const { handleAddItemsCart } = useCartItems();
 
-    const { handleAddItemsCart} = useCartItems();
+    const [prodsSelected, setProdsSelected] = useState([]);
+
+    const [detailsFind, setDetailsFind] = useState(initialSet);
+
+    useEffect(() => { 
+        setProdsSelected(findItemsCatalogFilter(products,detailsFind))
+    }, [products,detailsFind]);
+
+   
+   const handleCatalogDetails = (details) => {
+        sessionStorage.setItem('filters', JSON.stringify(details));
+        setDetailsFind(JSON.parse(sessionStorage.getItem('filters')));
+        //console.log(searchDetails); 
+   }
 
     const handleAddProduct = (product) => {
         handleAddItemsCart(product);
     }
-
-    
 
     return (
         <>
@@ -37,12 +52,12 @@ export const ProductCatalogView = () => {
                 </header>
                 <main className='row'>
                     <aside className="col-3 p-4">
-                        <ProductCatalogForm />
+                        <ProductCatalogForm handler={ handleCatalogDetails} />
                     </aside>
                     <section className="col-9 p-4">
                         {!errorCatalogMessage ?
                             <div className="row">
-                                {products.map(prod => (
+                                {prodsSelected.map(prod => (
                                     <div className=" col-4 my-2" key={prod.id}>
                                         <ProductCardView
                                             id={prod.id}
@@ -64,16 +79,16 @@ export const ProductCatalogView = () => {
                                  <p className="text-danger">Articulos no encontrados</p>
                             </div>}
                     </section>
-                    
+
                 </main>
             </div>
 
             {!visibleDetails ||
-                <DetailsModal handle={handleAddProduct}/>
-                
+                <DetailsModal handle={handleAddProduct} />
+
             }
 
-           
+
 
         </>
     )
